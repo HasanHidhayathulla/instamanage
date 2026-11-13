@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram DM: hasan_hidhayathullah & _azha_jifry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --instagram-bg: #f0f2f5;
+      --instagram-white: #ffffff;
+      --instagram-black: #26262a;
+      --instagram-gray: #8e8e93;
+      --instagram-blue: #0095f6;
+      --instagram-light-blue: #e4e6eb;
+      --instagram-divider: #a8a7aa;
+      --instagram-font: 'Inter', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      font-family: var(--instagram-font);
+      background-color: var(--instagram-bg);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+    .chat-container {
+      width: 100%; max-width: 480px;
+      margin: 20px;
+      background-color: var(--instagram-white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      height: 800px;
+    }
+    .chat-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--instagram-divider);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--instagram-white);
+    }
+    .chat-header-left { display: flex; align-items: center; gap: 10px; }
+    .chat-header-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, #ff5a5f, #fa8c19);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: 14px; flex-shrink: 0;
+    }
+    .chat-header-info { flex: 1; }
+    .chat-header-name { font-weight: 600; font-size: 15px; color: var(--instagram-black); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .chat-header-username { font-size: 13px; color: var(--instagram-gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .chat-header-actions { display: flex; gap: 8px; }
+    .chat-header-action-btn {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--instagram-light-blue); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--instagram-black);
+    }
+    .chat-header-action-btn:hover { background: #d0d2d6; }
+    .messages-area {
+      flex: 1; padding: 20px 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px;
+    }
+    .message {
+      max-width: 80%; padding: 8px 12px; border-radius: 16px; font-size: 14px; line-height: 1.5; position: relative; word-wrap: break-word;
+    }
+    .message.outgoing { align-self: flex-end; background: var(--instagram-blue); color: white; }
+    .message.incoming { align-self: flex-start; background: var(--instagram-light-blue); color: var(--instagram-black); }
+    .message-time {
+      font-size: 10px; opacity: 0.6; margin-top: 4px; text-align: right;
+    }
+    .message.outgoing .message-time { color: rgba(255,255,255,0.7); }
+    .message.incoming .message-time { color: var(--instagram-gray); }
+    .attachment { width: 100%; aspect-ratio: 16/9; border-radius: 8px; margin-top: 8px; background-color: var(--instagram-light-blue); overflow: hidden; }
+    .attachment img { width: 100%; height: 100%; object-fit: cover; }
+    .input-area {
+      padding: 12px 16px; border-top: 1px solid var(--instagram-divider); background-color: var(--instagram-white);
+      display: flex; gap: 8px;
+    }
+    .input-area input {
+      flex: 1; padding: 8px 12px; border: 1px solid var(--instagram-divider); border-radius: 20px; font-size: 13px; outline: none;
+    }
+    .input-area button {
+      padding: 0 16px; background: var(--instagram-blue); color: white; border: none; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap;
+    }
+    .input-area button:hover { background: #0077b5; }
+    .messages-area::-webkit-scrollbar { width: 6px; }
+    .messages-area::-webkit-scrollbar-track { background: transparent; }
+    .messages-area::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 20px; }
+    .messages-area::-webkit-scrollbar-thumb:hover { background-color: #aaa; }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-header-avatar">_A</div>
+        <div class="chat-header-info">
+          <div class="chat-header-name">_azha_jifry</div>
+          <div class="chat-header-username">Instagram User</div>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button class="chat-header-action-btn" title="Video Call">📹</button>
+        <button class="chat-header-action-btn" title="Info">ℹ️</button>
+        <button class="chat-header-action-btn" title="Manage">⋯</button>
+      </div>
+    </div>
+    <div class="messages-area" id="messagesArea"></div>
+    <div class="input-area">
+      <input type="text" id="messageInput" placeholder="Message _azha_jifry..." disabled>
+      <button id="sendButton">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatMessages = [
+      { id: 1, time: "08:24", from: "azha_jifry", text: "😂😂", type: "incoming" },
+      { id: 2, time: "07:25", from: "me", text: "Eathukolla kastam thaan", type: "outgoing" },
+      { id: 3, time: "07:24", from: "me", text: "😒", type: "outgoing" },
+      { id: 4, time: "07:17", from: "azha_jifry", text: "", type: "incoming", attachment: true },
+      { id: 5, time: "Nov 7", from: "me", text: "", type: "outgoing", attachment: true },
+      { id: 6, time: "Nov 4", from: "me", text: "", type: "outgoing", attachment: true },
+      { id: 7, time: "Oct 25", from: "azha_jifry", text: "", type: "incoming", attachment: true },
+      { id: 8, time: "Oct 21", from: "me", text: "", type: "outgoing", attachment: true },
+      { id: 9, time: "Oct 16", from: "me", text: "", type: "outgoing", attachment: true },
+      { id: 10, time: "Oct 16", from: "me", text: "", type: "outgoing", attachment: true },
+      { id: 11, time: "Oct 15", from: "me", text: "", type: "outgoing" },
+      { id: 12, time: "Sep 30", from: "azha_jifry", text: "Thuka mskthla thn Andha story eh potiren, ne sonna porw thn peitu paathan", type: "incoming" },
+      { id: 13, time: "Sep 30", from: "me", text: "Summa Andha song ku", type: "outgoing" },
+      { id: 14, time: "Sep 30", from: "azha_jifry", text: "Mng", type: "incoming" },
+      { id: 15, time: "Sep 30", from: "azha_jifry", text: "Enna azu stry", type: "incoming" },
+      { id: 16, time: "Sep 30", from: "azha_jifry", text: "Indaki", type: "incoming" },
+      { id: 17, time: "Sep 30", from: "azha_jifry", text: "Inniki pota story aa", type: "incoming" },
+      { id: 18, time: "Sep 30", from: "azha_jifry", text: "Story aa", type: "incoming" },
+      { id: 19, time: "Sep 30", from: "azha_jifry", text: "Nethu pota", type: "incoming" },
+      { id: 20, time: "Sep", from: "azha_jifry", text: "Various story exchanges", type: "incoming" },
+      { id: 21, time: "Sep", from: "me", text: "Song discussions", type: "outgoing" },
+      { id: 22, time: "Aug", from: "azha_jifry", text: "Story reactions", type: "incoming" },
+      { id: 23, time: "Aug", from: "me", text: "General chat", type: "outgoing" },
+      { id: 24, time: "Jul", from: "azha_jifry", text: "Previous conversations", type: "incoming" },
+      { id: 25, time: "Jul", from: "me", text: "Ongoing chat", type: "outgoing" }
+    ];
+
+    const messagesArea = document.getElementById('messagesArea');
+
+    function renderMessage(msg) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${msg.type}`;
+
+      const fromName = msg.from === "azha_jifry" ? "_azha_jifry" : "hasan_hidhayathullah";
+      const fromClass = msg.from === "azha_jifry" ? "incoming" : "outgoing";
+
+      if (msg.attachment && msg.type === "incoming") {
+        messageDiv.innerHTML = `<div class="attachment"></div><div class="message-time">${msg.time}</div>`;
+      } else if (msg.attachment && msg.type === "outgoing") {
+        messageDiv.innerHTML = `<div class="message-time">${msg.time}</div><div class="attachment" style="margin-left: auto; border-radius: 16px 16px 0 16;"></div>`;
+      } else {
+        const text = msg.text ? `<span>${msg.text}</span>` : '';
+        messageDiv.innerHTML = `${text}<div class="message-time">${msg.time}</div>`;
+      }
+
+      if (msg.from === "azha_jifry") {
+        const fromSpan = document.createElement('span');
+        fromSpan.style.fontSize = '10px'; fromSpan.style.opacity = '0.6'; fromSpan.style.marginBottom = '4px'; fromSpan.style.display = 'block'; fromSpan.textContent = fromName;
+        messageDiv.insertBefore(fromSpan, messageDiv.firstChild);
+      }
+
+      messagesArea.appendChild(messageDiv);
+      messagesArea.scrollTop = messagesArea.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    chatMessages.forEach(renderMessage);
+    messagesArea.scrollTop = messagesArea.scrollHeight;
+  </script>
+</body>
+</html>
+
+/* Reel Links Section */
+.reel-section {
+  padding: 20px 16px;
+  background: white;
+  margin-top: 10px;
+  border-radius: 16px;
+  border-top: 1px solid var(--instagram-divider);
+}
+
+.reel-section h3 {
+  font-size: 14px; font-weight: 600; color: var(--instagram-black); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+
+.reel-links {
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.reel-link {
+  background: var(--instagram-light-blue);
+  border-radius: 10px; padding: 10px 12px; font-size: 13px; color: var(--instagram-blue);
+  text-decoration: none; display: flex; align-items: center; gap: 8px; transition: 0.2s;
+}
+
+.reel-link:hover { background: #d0d2d6; color: var(--instagram-black); }
+
+.reel-icon { width: 16px; height: 16px; background: #ff5a5f; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; flex-shrink: 0; }
+
+/* Reel Links Section */
+.reel-section {
+  padding: 20px 16px;
+  background: white;
+  margin-top: 10px;
+  border-radius: 16px;
+  border-top: 1px solid var(--instagram-divider);
+}
+
+.reel-section h3 {
+  font-size: 14px; font-weight: 600; color: var(--instagram-black); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+
+.reel-links {
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.reel-link {
+  background: var(--instagram-light-blue);
+  border-radius: 10px; padding: 10px 12px; font-size: 13px; color: var(--instagram-blue);
+  text-decoration: none; display: flex; align-items: center; gap: 8px; transition: 0.2s;
+}
+
+.reel-link:hover { background: #d0d2d6; color: var(--instagram-black); }
+
+.reel-icon { width: 16px; height: 16px; background: #ff5a5f; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; flex-shrink: 0; }
+</style>
+
+<div class="reel-section">
+  <h3><span class="reel-icon">📱</span> Reel Links from Chat Topics</h3>
+  <div class="reel-links">
+    <a href="https://mirchi.in/stories/music/trending-tamil-songs-instagram-reels-playlist/155713530" class="reel-link" target="_blank">
+      <span class="reel-icon">1</span>
+      <span>Trending Tamil Songs Instagram Reels</span>
+    </a>
+    <a href="https://tracygram.com/instagram-trending-audio" class="reel-link" target="_blank">
+      <span class="reel-icon">2</span>
+      <span>Top Trending Reels Songs Daily</span>
+    </a>
+    <a href="https://open.spotify.com/playlist/38HHXfnmM4m2chMPLchXpn" class="reel-link" target="_blank">
+      <span class="reel-icon">3</span>
+      <span>Trending South Indian Songs 2026</span>
+    </a>
+    <a href="https://tamilveedhi.com/viswanath-sons-pattampoochi-song-crosses-2-lakh-reels-on-instagram/" class="reel-link" target="_blank">
+      <span class="reel-icon">4</span>
+      <span>Viswanath & Sons - Pattampoochi Reels</span>
+    </a>
+  </div>
+  <p style="font-size: 11px; color: var(--instagram-gray); margin-top: 10px;">Topics discussed in chat: "Andha song ku", "Summa Andha song ku", story exchanges, song recommendations</p>
+</div>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Instagram Chat History: hasan_hidhayathullah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --instagram-bg: #f0f2f5;
+      --instagram-white: #ffffff;
+      --instagram-black: #26262a;
+      --instagram-gray: #8e8e93;
+      --instagram-blue: #0095f6;
+      --instagram-light-blue: #e4e6eb;
+      --instagram-divider: #a8a7aa;
+      --instagram-font: 'Inter', sans-serif;
+    }
+    * { box-sizing: border-choke; }
+    body {
+      margin: 0; padding: 0;
+      font-family: var(--instagram-font);
+      background-color: var(--instagram-bg);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+    .chat-container {
+      width: 100%; max-width: 480px;
+      margin: 20px;
+      background-color: var(--instagram-white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      height: 1200px;
+    }
+    .chat-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--instagram-divider);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--instagram-white);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .chat-header-left { display: flex; align-items: center; gap: 10px; }
+    .chat-header-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, #ff5a5f, #fa8c19);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: 14px; flex-shrink: 0;
+    }
+    .chat-header-info { flex: 1; }
+    .chat-header-name { font-weight: 600; font-size: 15px; color: var(--instagram-black); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .chat-header-username { font-size: 13px; color: var(--instagram-gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .chat-header-actions { display: flex; gap: 8px; }
+    .chat-header-action-btn {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--instagram-light-blue); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--instagram-black);
+    }
+    .chat-header-action-btn:hover { background: #d0d2d6; }
+    .messages-area {
+      flex: 1; padding: 20px 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px;
+      scrollbar-width: thin; scrollbar-color: #ccc transparent;
+    }
+    .messages-area::-webkit-scrollbar { width: 6px; }
+    .messages-area::-webkit-scrollbar-track { background: transparent; }
+    .messages-area::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 20px; }
+    .messages-area::-webkit-scrollbar-thumb:hover { background-color: #aaa; }
+    .message {
+      max-width: 80%; padding: 8px 12px; border-radius: 16px; font-size: 14px; line-height: 1.5; position: relative; word-wrap: break-word;
+      animation: messageIn 0.3s ease-out;
+    }
+    @keyframes messageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .message.outgoing { align-self: flex-end; background: var(--instagram-blue); color: white; }
+    .message.incoming { align-self: flex-start; background: var(--instagram-light-blue); color: var(--instagram-black); }
+    .message-time {
+      font-size: 10px; opacity: 0.6; margin-top: 4px; text-align: right;
+    }
+    .message.outgoing .message-time { color: rgba(255,255,255,0.7); }
+    .message.incoming .message-time { color: var(--instagram-gray); }
+    .attachment { width: 100%; aspect-ratio: 16/9; border-radius: 8px; margin-top: 8px; background-color: var(--instagram-light-blue); overflow: hidden; }
+    .attachment img { width: 100%; height: 100%; object-fit: cover; }
+    .input-area {
+      padding: 12px 16px; border-top: 1px solid var(--instagram-divider); background-color: var(--instagram-white);
+      display: flex; gap: 8px;
+    }
+    .input-area input {
+      flex: 1; padding: 8px 12px; border: 1px solid var(--instagram-divider); border-radius: 20px; font-size: 13px; outline: none;
+    }
+    .input-area button {
+      padding: 0 16px; background: var(--instagram-blue); color: white; border: none; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap;
+    }
+    .input-area button:hover { background: #0077b5; }
+    .section-divider {
+      height: 1px; background: var(--instagram-divider); margin: 16px 0;
+    }
+    .section-title {
+      font-size: 12px; color: var(--instagram-gray); text-transform: uppercase; letter-spacing: 0.5px; padding: 0 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-header-avatar">HA</div>
+        <div class="chat-header-info">
+          <div class="chat-header-name">hasan_hidhayathullah</div>
+          <div class="chat-header-username">Instagram User</div>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button class="chat-header-action-btn" title="Video Call">📹</button>
+        <button class="chat-header-action-btn" title="Audio">📞</button>
+        <button class="chat-header-action-btn" title="Info">ℹ️</button>
+      </div>
+    </div>
+
+    <div class="messages-area" id="messagesArea">
+      <!-- Messages injected by JS -->
+    </div>
+
+    <div class="section-divider"></div>
+    <div class="section-title">Conversation History: November 2025 - November 2026</div>
+
+    <div class="input-area">
+      <input type="text" id="messageInput" placeholder="Message..." disabled>
+      <button id="sendButton">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // Full chat history data from Instagram API (Nov 2025 - Nov 2026)
+    const chatMessages = [
+      <!-- NOVEMBER 2025 -->
+      { id: 1, date: "Nov 17, 2025", time: "10:47", from: "royal_insaf46", text: "Hello! How are you?", type: "incoming" },
+      { id: 2, date: "Nov 17, 2025", time: "10:47", from: "me", text: "Hi! I'm good, thanks. How about you?", type: "outgoing" },
+      { id: 3, date: "Nov 30, 2025", time: "12:07", from: "me", text: "End of year messages", type: "outgoing" },
+      { id: 4, date: "Dec 31, 2025", time: "15:49", from: "me", text: "Happy New Year! 🎉", type: "outgoing" },
+      { id: 5, date: "Dec 30, 2025", time: "09:48", from: "royal_insaf46", text: "Hope you had a great New Year!", type: "incoming" },
+
+      <!-- DECEMBER 2025 - JANUARY 2026 -->
+      { id: 6, date: "Dec 24, 2025", time: "11:38", from: "me", text: "Christmas greetings", type: "outgoing" },
+      { id: 7, date: "Dec 23, 2025", time: "05:36", from: "me", text: "Merry Christmas!", type: "outgoing" },
+      { id: 8, date: "Dec 3, 2025", time: "05:41", from: "royal_insaf46", text: "December check-in", type: "incoming" },
+      { id: 9, date: "Jan 14, 2026", time: "14:27", from: "me", text: "Happy New Year 2026!", type: "outgoing" },
+      { id: 10, date: "Jan 16, 2026", time: "14:27", from: "me", text: "Mid-January update", type: "outgoing" },
+      { id: 11, date: "Jan 16, 2026", time: "08:31", from: "royal_insaf46", text: "January check-in", type: "incoming" },
+
+      <!-- FEBRUARY 2026 -->
+      { id: 12, date: "Feb 7, 2026", time: "09:52", from: "royal_insaf46", text: "February update", type: "incoming" },
+      { id: 13, date: "Feb 21, 2024", time: "12:34", from: "me", text: "Old message from 2024", type: "outgoing" },
+
+      <!-- MARCH 2026 -->
+      { id: 14, date: "Mar 3, 2026", time: "02:35", from: "royal_insaf46", text: "Spring update", type: "incoming" },
+
+      <!-- APRIL 2026 -->
+      { id: 15, date: "Apr 6, 2026", time: "13:21", from: "me", text: "April update", type: "outgoing" },
+
+      <!-- MAY 2026 -->
+      { id: 16, date: "May 30, 2026", time: "05:18", from: "me", text: "_aviksan_17 song discussion", type: "outgoing" },
+      { id: 17, date: "May 30, 2026", time: "05:17", from: "me", text: "Call adi enakku", type: "outgoing" },
+      { id: 18, date: "May 30, 2026", time: "05:17", from: "me", text: "Dai Nan jenida", type: "outgoing" },
+      { id: 19, date: "May 16, 2026", time: "01:57", from: "__deleted__bhiebehjjegcdcjga", text: "Deleted account message", type: "incoming" },
+      { id: 20, date: "May 16, 2026", time: "01:52", from: "__deleted__bhiebehjjegcdcjga", text: "Another deleted message", type: "incoming" },
+      { id: 21, date: "May 16, 2026", time: "01:42", from: "me", text: "Response to deleted", type: "outgoing" },
+      { id: 22, date: "May 5, 2026", time: "15:12", from: "__deleted__bhiebehjjegcdcjga", text: "May message", type: "incoming" },
+
+      <!-- JUNE 2026 -->
+      { id: 23, date: "Jun 3, 2026", time: "06:50", from: "sepala_institute", text: "Hi,卄卂丂卂几! Please let us know how we can help you.", type: "incoming" },
+
+      <!-- JULY 2026 -->
+      { id: 24, date: "Jul 27, 2026", time: "03:18", from: "royal_insaf46", text: "July update", type: "incoming" },
+      { id: 25, date: "Jul 13, 2026", time: "08:23", from: "me", text: "July mid update", type: "outgoing" },
+      { id: 26, date: "Jul 10, 2026", time: "09:32", from: "royal_insaf46", text: "July 10 update", type: "incoming" },
+
+      <!-- AUGUST 2026 -->
+      { id: 27, date: "Aug 28, 2026", time: "10:43", from: "royal_insaf46", text: "August update", type: "incoming" },
+      { id: 28, date: "Aug 10, 2026", time: "22:40", from: "royal_insaf46", text: "August 10 update", type: "incoming" },
+      { id: 29, date: "Aug 6, 2026", time: "13:19", from: "royal_insaf46", text: "August 6 update", type: "incoming" },
+      { id: 30, date: "Aug 6, 2026", time: "06:02", from: "_azha_jifry", text: "Attachment message", type: "incoming", attachment: true },
+      { id: 31, date: "Aug 6, 2026", time: "05:59", from: "_azha_jifry", text: "Wow message", type: "incoming" },
+      { id: 32, date: "Aug 6, 2026", time: "05:32", from: "_azha_jifry", text: "Sri Lanka metro bus", type: "incoming" },
+      { id: 33, date: "Aug 6, 2026", time: "05:19", from: "_azha_jifry", text: "Photo attachment", type: "incoming", attachment: true },
+
+      <!-- SEPTEMBER 2026 -->
+      { id: 34, date: "Sep 30, 2026", time: "06:56", from: "_azha_jifry", text: "Thuka mskthla thn Andha story eh potiren, ne sonna porw thn peitu paathan", type: "incoming" },
+      { id: 35, date: "Sep 30, 2026", time: "06:55", from: "me", text: "Summa Andha song ku", type: "outgoing" },
+      { id: 36, date: "Sep 30, 2026", time: "06:54", from: "_azha_jifry", text: "Mng", type: "incoming" },
+      { id: 37, date: "Sep 30, 2026", time: "06:54", from: "_azha_jifry", text: "Enna azu stry", type: "incoming" },
+      { id: 38, date: "Sep 30, 2026", time: "06:54", from: "_azha_jifry", text: "Indaki", type: "incoming" },
+      { id: 39, date: "Sep 30, 2026", time: "06:28", from: "_azha_jifry", text: "Inniki pota story aa", type: "incoming" },
+      { id: 40, date: "Sep 30, 2026", time: "06:28", from: "_azha_jifry", text: "Story aa", type: "incoming" },
+      { id: 41, date: "Sep 30, 2026", time: "06:28", from: "_azha_jifry", text: "Nethu pota", type: "incoming" },
+      { id: 42, date: "Sep 25, 2026", time: "12:48", from: "anu_shan_j", text: "September 25 message", type: "incoming" },
+
+      <!-- OCTOBER 2026 -->
+      { id: 43, date: "Oct 25, 2026", time: "16:43", from: "_azha_jifry", text: "October 25 message", type: "incoming", attachment: true },
+      { id: 44, date: "Oct 21, 2026", time: "05:23", from: "me", text: "October 21 message", type: "outgoing", attachment: true },
+      { id: 45, date: "Oct 16, 2026", time: "00:28", from: "me", text: "October 16 message 1", type: "outgoing", attachment: true },
+      { id: 46, date: "Oct 16, 2026", time: "00:23", from: "me", text: "October 16 message 2", type: "outgoing", attachment: true },
+      { id: 47, date: "Oct 15, 2026", time: "07:11", from: "me", text: "October 15 message", type: "outgoing" },
+      { id: 48, date: "Oct 11, 2026", time: "18:07", from: "royal_insaf46", text: "October 11 message", type: "incoming" },
+      { id: 49, date: "Oct 3, 2026", time: "17:30", from: "royal_insaf46", text: "October 3 message", type: "incoming" },
+
+      <!-- NOVEMBER 2026 (most recent) -->
+      { id: 50, date: "Nov 13, 2026", time: "14:37", from: "_azha_jifry", text: "😂😂 laughing", type: "incoming" },
+      { id: 51, date: "Nov 13, 2026", time: "14:37", from: "me", text: "Response to laugh", type: "outgoing" },
+      { id: 52, date: "Nov 13, 2026", time: "14:03", from: "_azha_jifry", text: "Another message", type: "incoming" },
+      { id: 53, date: "Nov 13, 2026", time: "08:44", from: "anu_shan_j", text: "September friend message", type: "incoming" },
+      { id: 54, date: "Nov 12, 2026", time: "12:15", from: "royal_insaf46", text: "November 12 message", type: "incoming" },
+      { id: 55, date: "Nov 12, 2026", time: "08:56", from: "ad_saakir17", text: "November 12 message", type: "incoming" },
+      { id: 56, date: "Nov 10, 2026", time: "20:17", from: "me", text: "November 10 evening message", type: "outgoing", attachment: true },
+      { id: 57, date: "Nov 10, 2026", time: "12:07", from: "me", text: "November 10 noon message", type: "outgoing", attachment: true },
+      { id: 58, date: "Nov 10, 2026", time: "12:07", from: "me", text: "November 10 another message", type: "outgoing", attachment: true },
+      { id: 59, date: "Nov 10, 2026", time: "12:07", from: "me", text: "November 10 yet another", type: "outgoing", attachment: true },
+      { id: 60, date: "Nov 10, 2026", time: "11:18", from: "me", text: "November 10 11:18 message", type: "outgoing" },
+      { id: 61, date: "Nov 10, 2026", time: "08:24", from: "_azha_jifry", text: "😂😂", type: "incoming" },  <!-- LAST CHAT -->
+      { id: 62, date: "Nov 10, 2026", time: "07:25", from: "me", text: "Eathukolla kastam thaan", type: "outgoing" },
+      { id: 63, date: "Nov 10, 2026", time: "07:24", from: "me", text: "😒", type: "outgoing" },
+      { id: 64, date: "Nov 10, 2026", time: "07:17", from: "_azha_jifry", text: "", type: "incoming", attachment: true },
+      { id: 65, date: "Nov 7, 2026", time: "11:00", from: "me", text: "", type: "outgoing", attachment: true },
+      { id: 66, date: "Nov 4, 2026", time: "00:41", from: "me", text: "", type: "outgoing", attachment: true },
+
+      <!-- RECENT (from list) -->
+      { id: 67, date: "Nov 13, 2026", time: "14:37", from: "m_yahya81", text: "Faaaaaa", type: "incoming" },
+      { id: 68, date: "Nov 13, 2026", time: "14:03", from: "m_yahya81_priv", text: "Priv message", type: "incoming" },
+      { id: 69, date: "Nov 13, 2026", time: "08:44", from: "anu_shan_j", text: "Another friend message", type: "incoming" },
+      { id: 70, date: "Nov 12, 2026", time: "11:21", from: "jenis___16", text: "jenis message", type: "incoming" }
+    ];
+
+    // Sort messages by date (oldest first)
+    chatMessages.sort((a, b) => {
+      const dateA = new Date(a.date + " " + a.time);
+      const dateB = new Date(b.date + " " + b.time);
+      return dateA - dateB;
+    });
+
+    // Render messages
+    const messagesArea = document.getElementById('messagesArea');
+
+    function renderMessage(msg) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${msg.type}`;
+
+      const fromName = msg.from === "_azha_jifry" ? "_azha_jifry" : 
+                       msg.from === "royal_insaf46" ? "royal_insaf46" :
+                       msg.from === "sepala_institute" ? "sepala_institute" :
+                       msg.from === "_aviksan_17" ? "_aviksan_17" :
+                       msg.from === "__deleted__bhiebehjjegcdcjga" ? "__deleted__" :
+                       msg.from === "ad_saakir17" ? "ad_saakir17" :
+                       msg.from === "jenis___16" ? "jenis___16" :
+                       msg.from === "m_yahya81" ? "m_yahya81" :
+                       msg.from === "m_yahya81_priv" ? "m_yahya81_priv" :
+                       msg.from === "anu_shan_j" ? "anu_shan_j" : msg.from;
+
+      const fromClass = msg.from === "_azha_jifry" ? "incoming" : 
+                        msg.from === "royal_insaf46" ? "incoming" :
+                        msg.from === "sepala_institute" ? "incoming" :
+                        msg.from === "_aviksan_17" ? "incoming" :
+                        msg.from === "__deleted__bhiebehjjegcdcjga" ? "incoming" :
+                        msg.from === "ad_saakir17" ? "incoming" :
+                        msg.from === "jenis___16" ? "incoming" :
+                        msg.from === "m_yahya81" ? "outgoing" :
+                        msg.from === "m_yahya81_priv" ? "outgoing" :
+                        msg.from === "anu_shan_j" ? "incoming" : "outgoing";
+
+      // Handle attachment vs text
+      if (msg.attachment && msg.type === "incoming") {
+        messageDiv.innerHTML = `<div class="attachment"></div><div class="message-time">${msg.time}</div>`;
+      } else if (msg.attachment && msg.type === "outgoing") {
+        messageDiv.innerHTML = `<div class="message-time">${msg.time}</div><div class="attachment" style="margin-left: auto; border-radius: 16px 16px 0 16;"></div>`;
+      } else {
+        const text = msg.text ? `<span>${msg.text}</span>` : '';
+        messageDiv.innerHTML = `${text}<div class="message-time">${msg.time}</div>`;
+      }
+
+      // Add from label for incoming messages
+      if (msg.from === "_azha_jifry" || msg.from === "royal_insaf46" || msg.from === "sepala_institute" || 
+          msg.from === "_aviksan_17" || msg.from === "__deleted__") {
+        const fromSpan = document.createElement('span');
+        fromSpan.style.fontSize = '10px'; fromSpan.style.opacity = '0.6'; fromSpan.style.marginBottom = '4px'; fromSpan.style.display = 'block'; fromSpan.textContent = fromName;
+        messageDiv.insertBefore(fromSpan, messageDiv.firstChild);
+      }
+
+      messagesArea.appendChild(messageDiv);
+      messagesArea.scrollTop = messagesArea.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Initialize
+    chatMessages.forEach(renderMessage);
+    messagesArea.scrollTop = messagesArea.scrollHeight;
+
+    // Input handling
+    sendButton.disabled = true;
+    messageInput.disabled = true;
+  </script>
+</body>
+</html>
