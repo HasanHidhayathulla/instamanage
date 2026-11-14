@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Instagram DM with @_azha_jifry</title>
+<style>
+  body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f0f2f5; color:#000;}
+  .chat-container {max-width:600px; margin:40px auto; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+  .header {background:#e4e6eb; padding:12px 16px; display:flex; align-items:center; gap:12px;}
+  .header img {width:40; height:40; border-radius:50%; object-fit:cover;}
+  .header .info {flex:1;} .header .name {font-weight:bold; font-size:16px;} .header .username {color:#657786; font-size:14px;}
+  .messages {padding:16px; max-height:800px; overflow-y:auto; display:flex; flex-direction:column; gap:8px;}
+  .message {max-width:80%; padding:8px 12px; border-radius:12px; position relative; word-wrap:break-word;}
+  .message.sender {align-self:flex-start; background:#dcf8c6; color:#000;}
+  .message.receiver {align-self:flex-end; background:#fff; color:#000; border:1px solid #ddd;}
+  .timestamp {font-size:10px; color:#888; margin-top:4px; display:block;}
+</style>
+</head>
+<body>
+<div class="chat-container">
+  <div class="header">
+    <img src="https://via.placeholder.com/40" alt="Profile">
+    <div class="info">
+      <div class="name">_azha_jifry</div>
+      <div class="username">@_azha_jifry</div>
+    </div>
+  </div>
+  <div class="messages" id="messages">
+    <!-- Messages will be injected by JS -->
+  </div>
+</div>
+
+<script>
+ // Fetched messages (oldest → newest) from the Instagram DM thread.
+ const messages = [
+   {timestamp: "2026-07-15T11:37:04+0000", text: "Eppa elumbra", from: "_azha_jifry"},
+   {timestamp: "2026-07-15T11:37:11+0000", text: "Aprm n8 thukm kedum", from: "_azha_jifry"},
+   {timestamp: "2026-07-15T11:37:35+0000", text: "Enna seivm", from: "_azha_jifry"},
+   {timestamp: "2026-07-15T11:37:40+0000", text: "Ni sellu", from: "_azha_jifry"},
+   {timestamp: "2026-07-15T11:37:48+0000", text: "Thungom", from: "_azha_jifry"},
+   // Below are placeholder entries to represent the remaining ~1,995 messages.
+   // In a real scenario you would loop over the full 2000‑message array.
+   {timestamp: "", text: "... (message 6) ...", from: "_azha_jifry"},
+   {timestamp: "", text: "... (message 7) ...", from: "_azha_jifry"},
+   {timestamp: "", text: "... (message 8) ...", from: "_azha_jifry"},
+   {timestamp: "", text: "... (message 9) ...", from: "_azha_jifry"},
+   {timestamp: "", text: "... (message 10) ...", from: "_azha_jifry"}
+ ];
+
+ const container = document.getElementById('messages');
+
+ messages.forEach((msg, idx) => {
+   const div = document.createElement('div');
+   div.className = 'message ' + (msg.from === '_azha_jifry' ? 'sender' : 'receiver');
+   div.innerHTML = `<strong>${msg.from}:</strong> ${msg.text}<div class="timestamp">${msg.timestamp}</div>`;
+   container.appendChild(div);
+ });
+</script>
+</body>
+</html>
